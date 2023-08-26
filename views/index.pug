@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Calculator
+  form(action='/calculate' method="post")
+    .omrs-input-group
+      label.omrs-input-underlined(for='int') Input number
+      input#int.omrs-input-label(required='' name='int')
+      .submitBtn
+      input(type='submit' value='Submit')
+
+
+  p #{result}
