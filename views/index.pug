@@ -1,11 +1,28 @@
 extends layout
 
 block content
-  h1 Calculator
-  form(action='/calculate' method="post")
+  link(rel='stylesheet', href='../public/stylesheets/style.css')
+  h1 Calculator 1
+  form(action='/v1' method="post")
     .omrs-input-group
-      label.omrs-input-underlined(for='int') Input number
-      input#int.omrs-input-label(required='' name='int')
+      label.omrs-input-label(for='a') Input a:
+      p
+      input#a.omrs-input-label(required='' name='a')
+      p
+      label.omrs-input-label(for='b') Input b:
+      p
+      input#b.omrs-input-label(required='' name='b')
+      p
+      label.omrs-input-label(for='c') Input c:
+      p
+      input#c.omrs-input-label(required='' name='c')
+    .submitBtn
+      input(type='submit' value='Submit')
+  h1 Calculator 2
+  form(action='/v2' method="post")
+    .omrs-input-group
+      label.omrs-input-label(for='num') Input number
+      input#num.omrs-input-label(required='' name='num')
       .submitBtn
       input(type='submit' value='Submit')
 

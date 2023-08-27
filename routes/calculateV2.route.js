@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
-CalculateService = require('../services/calculate.service');
 router.use(express.urlencoded({ extended: true }));
 const { Worker } = require("worker_threads");
 
 
 router.post('/', async (req, res, next) => {
     try {
-      const worker = new Worker('./workers/worker.js', {
+      const worker = new Worker('./workers/calculateV2.worker.js', {
         workerData: {
-          value: req.body.int,
+            a: req.body.a,
+            b: req.body.b,
+            c: req.body.c,
         }
       });
 

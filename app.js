@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const calculationRouter = require('./routes/calculate.route');
+const calculationV1Router = require('./routes/calculateV1.route');
+const calculationV2Router = require('./routes/calculateV2.route');
 
 const app = express();
 
@@ -18,8 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/calculate', calculationRouter);
+app.use('/calculate', indexRouter);
+app.use('/v1', calculationV1Router);
+app.use('/v2', calculationV2Router);
 
 app.use(function(req, res, next) {
   next(createError(404));
