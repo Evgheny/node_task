@@ -1,9 +1,10 @@
-const {parentPort, workerData} = require("worker_threads");
+const { parentPort, workerData } = require("worker_threads");
 
 class TreeNode {
     constructor(a, b) {
         this.a = a;
         this.b = b;
+        this.children = [];
     }
 }
 
@@ -23,30 +24,31 @@ function canReachTargetValue(a, b, c) {
 
         if (newA <= c) {
             const leftChild = new TreeNode(newA, currentNode.b);
-            currentNode.left = leftChild;
+            currentNode.children.push(leftChild);
             queue.push(leftChild);
+
         }
 
-        if (newB <= c && newB !== newA) {
+        if (newB <= c || newB !== newA) {
             const rightChild = new TreeNode(currentNode.a, newB);
-            currentNode.right = rightChild;
+            currentNode.children.push(rightChild);
             queue.push(rightChild);
         }
     }
 
-   return "NO";
+    return "NO";
 }
 
 const a = Number(workerData.a);
 const b = Number(workerData.b);
 const c = Number(workerData.c);
 
-const result = canReachTargetValue(a,b,c);
+const result = canReachTargetValue(a, b, c);
 
 (async () => {
     try {
         parentPort.postMessage(result);
     } catch (error) {
-        parentPort.postMessage({error: error || "Unknown error occurred"});
+        parentPort.postMessage({ error: error || "Unknown error occurred" });
     }
 })();
