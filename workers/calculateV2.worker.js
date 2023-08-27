@@ -1,8 +1,8 @@
 const {parentPort, workerData} = require("worker_threads");
 
-    const a = Number(workerData.value.a);
-    const b = Number(workerData.value.b);
-    const c = Number(workerData.value.c);
+    const a = 5;
+    const b = 7;
+    const c = Number(workerData.value);
 
     let result = 'We can`t reach this number';
 

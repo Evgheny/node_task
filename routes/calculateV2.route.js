@@ -8,9 +8,7 @@ router.post('/', async (req, res, next) => {
     try {
       const worker = new Worker('./workers/calculateV2.worker.js', {
         workerData: {
-            a: req.body.a,
-            b: req.body.b,
-            c: req.body.c,
+            value: req.body.num
         }
       });
 
